@@ -23,13 +23,14 @@ function buildCharts(sample) {
   var graphculture = `/samples/${sample}`;
     // @TODO: Build a Bubble Chart using the sample data
     d3.json(graphculture).then((data) => {
+      var colonycount = data.sample_values;
+      var colors = data.otu_ids;      
       
       var trace =[{
         x: data.otu_ids,
         y: data.sample_values,
-        text: data.otu_labels,
         mode: `markers`,
-        marker: {size:data.sample_values,color:data.otu_ids}}];
+        marker: {size:colonycount,color:colors}}];
   
       var layout = {
         title: "Belly-Button Culture Bacteria Colony Count",
@@ -41,13 +42,19 @@ function buildCharts(sample) {
     // HINT: You will need to use slice() to grab the top 10 sample_values,
     // otu_ids, and labels (10 each)
     d3.json(graphculture).then((data) => {
-      var pie_chart = [{
+      var trace1 = {
         values: data.sample_values.slice(0,10),
         lables: data.otu_ids,
-
+        type: "pie",
         hole: .5,
-        type: "pie",}];
-      Plotly.newPlot('pie',pie_chart);});
+        //name = data.otu_ids
+        };
+      var data = [trace1];  
+      var layout = {
+        title: "Interactive Chart",
+      };
+
+      Plotly.newPlot('pie',data, layout);});
   });
 };
 
