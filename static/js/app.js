@@ -46,8 +46,7 @@ function buildCharts(sample) {
         values: data.sample_values.slice(0,10),
         lables: data.otu_ids,
         type: "pie",
-        hole: .5,
-        //name = data.otu_ids
+        //name: data.otu_ids
         };
       var data = [trace1];  
       var layout = {
