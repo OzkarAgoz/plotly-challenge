@@ -44,7 +44,7 @@ function buildCharts(sample) {
     d3.json(graphculture).then((data) => {
       var trace1 = {
         values: data.sample_values.slice(0,10),
-        lables: data.otu_ids,
+        labels: data.otu_ids,
         type: "pie",
         //name: data.otu_ids
         };
